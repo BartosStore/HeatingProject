@@ -13,14 +13,12 @@ import javax.validation.constraints.Size;
  *
  * @author Miroslav Bartoš
  */
-
-@NamedQueries (
+@NamedQueries(
         {
-            @NamedQuery (name = "findAllBuildings", query = "SELECT b FROM Building b"),
-            @NamedQuery (name = "findBuildingByName", query = "SELECT b FROM Building b WHERE b.name = :name")
+            @NamedQuery(name = "findAllBuildings", query = "SELECT b FROM Building b"),
+            @NamedQuery(name = "findBuildingByName", query = "SELECT b FROM Building b WHERE b.name = :name")
         }
 )
-
 @Entity
 public class Building {
 
@@ -33,6 +31,15 @@ public class Building {
     private List<Room> rooms;
     @OneToMany
     private List<Boiler> boilers;
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
+        final Building other = (Building) obj;
+        if (this.id != other.id) return false;
+        return true;
+    }
 
     public List<Boiler> getBoilers() {
         return boilers;
@@ -64,6 +71,13 @@ public class Building {
 
     public void setRooms(List<Room> rooms) {
         this.rooms = rooms;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 67 * hash + (int) (this.id ^ (this.id >>> 32));
+        return hash;
     }
 
 }

@@ -11,14 +11,19 @@
         <p:messages autoUpdate="true" showSummary="true" />
         <ui:define name="header">Nadpis</ui:define>
         <ui:define name="content">
-            <p:selectOneMenu value="#{overviewBean.selectedBuilding}" converter="BuildingConverter"  >
-                <f:selectItems value="#{overviewBean.buildings}"></f:selectItems>
-            </p:selectOneMenu>
-                
+            <h:form>
+                <p:selectOneMenu id="menu" value="#{overviewBean.selectedBuilding}" converter="#{buildingConverter}">
+                    <f:selectItems value="#{overviewBean.buildings}" var="building" itemLabel="#{category.name}" itemValue="#{building.name}"/>
+                    <p:ajax event="change" update="menu"/>
+                </p:selectOneMenu>
+            </h:form>
+
+
+
         </ui:define>
     </ui:composition>
-    
-    
+
+
 
 </html>
 

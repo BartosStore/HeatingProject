@@ -16,7 +16,7 @@ import javax.inject.Named;
 @Named
 @ViewScoped
 public class OverviewBean implements Serializable {
-    
+
     @Inject private BuildingDao buildingsDao;
     private List<Building> buildings;
     private Building selectedBuilding;
@@ -26,9 +26,10 @@ public class OverviewBean implements Serializable {
     }
 
     public void setSelectedBuilding(Building selectedBuilding) {
+        System.out.println(selectedBuilding);
         this.selectedBuilding = selectedBuilding;
     }
-    
+
     @PostConstruct
     private void init() {
         buildings = buildingsDao.findAll();
@@ -41,7 +42,5 @@ public class OverviewBean implements Serializable {
     public void setBuildings(List<Building> buildings) {
         this.buildings = buildings;
     }
-    
-    
-    
+
 }
