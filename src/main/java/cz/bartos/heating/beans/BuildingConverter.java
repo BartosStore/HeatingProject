@@ -2,20 +2,15 @@ package cz.bartos.heating.beans;
 
 import cz.bartos.heating.dao.BuildingDao;
 import cz.bartos.heating.domain.Building;
-import javax.enterprise.context.RequestScoped;
+import java.io.Serializable;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-/**
- *
- * @author Pavel Pscheidl
- */
 @Named
-@RequestScoped
-public class BuildingConverter implements Converter {
+public class BuildingConverter implements Converter, Serializable {
 
     @Inject BuildingDao buildingDao;
 

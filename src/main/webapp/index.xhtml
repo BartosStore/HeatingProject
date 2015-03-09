@@ -13,12 +13,10 @@
         <ui:define name="content">
             <h:form>
                 <p:selectOneMenu id="menu" value="#{overviewBean.selectedBuilding}" converter="#{buildingConverter}">
-                    <f:selectItems value="#{overviewBean.buildings}" var="building" itemLabel="#{category.name}" itemValue="#{building.name}"/>
-                    <p:ajax event="change" update="menu"/>
+                    <f:selectItems value="#{overviewBean.buildings}" var="building" itemLabel="#{building.name}" itemValue="#{building}"/>
+                    <p:ajax event="change" update="menu, :test"/>
                 </p:selectOneMenu>
             </h:form>
-
-
 
         </ui:define>
     </ui:composition>

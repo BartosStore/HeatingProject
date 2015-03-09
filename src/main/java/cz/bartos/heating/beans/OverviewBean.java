@@ -22,17 +22,18 @@ public class OverviewBean implements Serializable {
     private Building selectedBuilding;
 
     public Building getSelectedBuilding() {
+        System.out.println(selectedBuilding);
         return selectedBuilding;
     }
 
     public void setSelectedBuilding(Building selectedBuilding) {
-        System.out.println(selectedBuilding);
         this.selectedBuilding = selectedBuilding;
     }
 
     @PostConstruct
     private void init() {
         buildings = buildingsDao.findAll();
+        selectedBuilding = buildings.get(0);
     }
 
     public List<Building> getBuildings() {
