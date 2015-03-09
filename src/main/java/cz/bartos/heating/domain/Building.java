@@ -4,6 +4,8 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
 
@@ -11,6 +13,14 @@ import javax.validation.constraints.Size;
  *
  * @author Miroslav Bartoš
  */
+
+@NamedQueries (
+        {
+            @NamedQuery (name = "findAllBuildings", query = "SELECT b FROM Building b"),
+            @NamedQuery (name = "findBuildingByName", query = "SELECT b FROM Building b WHERE b.name = :name")
+        }
+)
+
 @Entity
 public class Building {
 

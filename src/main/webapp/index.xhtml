@@ -10,7 +10,12 @@
     <ui:composition template="/WEB-INF/template.xhtml">
         <p:messages autoUpdate="true" showSummary="true" />
         <ui:define name="header">Nadpis</ui:define>
-        <ui:define name="content">Lorem ipsum</ui:define>
+        <ui:define name="content">
+            <p:selectOneMenu value="#{overviewBean.selectedBuilding}" converter="BuildingConverter"  >
+                <f:selectItems value="#{overviewBean.buildings}"></f:selectItems>
+            </p:selectOneMenu>
+                
+        </ui:define>
     </ui:composition>
     
     
