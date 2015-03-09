@@ -9,20 +9,7 @@ and open the template in the editor.
 */
 
 body {
-    background-color: #ccffcc;
+    margin: 0px;
     font-family: Verdana;
     color: #ffffff;
-}
-
-#container {
-    position: relative;
-    /*min-width: 981px;*/
-    max-width: 981px;
-    min-height: 800px;
-    margin: auto auto auto auto;
-    background-color: white;
-}
-
-.message{
-    color:green;
 }

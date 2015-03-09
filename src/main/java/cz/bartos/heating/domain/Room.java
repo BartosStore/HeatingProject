@@ -6,12 +6,14 @@
 package cz.bartos.heating.domain;
 
 import java.io.Serializable;
-import javax.persistence.Column;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -23,10 +25,12 @@ public class Room implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column
+    @Size(min = 1, max = 100)
     private String roomName;
     @ManyToOne
     private Boiler boiler;
+    @OneToMany
+    private List<Sensor> sensors;
 
     public Long getId() {
         return id;
@@ -50,6 +54,14 @@ public class Room implements Serializable {
 
     public void setBoiler(Boiler boiler) {
         this.boiler = boiler;
+    }
+
+    public List<Sensor> getSensors() {
+        return sensors;
+    }
+
+    public void setSensors(List<Sensor> sensors) {
+        this.sensors = sensors;
     }
 
 }

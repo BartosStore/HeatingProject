@@ -9,24 +9,9 @@
         <h:outputStylesheet name="css/style.css"></h:outputStylesheet>
     </h:head>
     <h:body>
+        <p:growl id="growl" showSummary="true" showDetail="true" sticky="false" />
         <div id="container">
-            <div id="menu" align="right">
-                <p:tabMenu>
-                    <p:menuitem value="Home" icon="ui-icon-home" outcome="/index" iconPos="top"/>
-                    <p:menuitem value="Settings" icon="ui-icon-gear" outcome="/second" iconPos="top"/>
-                    <p:menuitem value="Search" icon="ui-icon-search" outcome="/second" iconPos="top"/>
-                </p:tabMenu>
-            </div>
 
-            <div class="message">Hello World!</div>
-
-            <p:growl id="growl" showSummary="true" showDetail="true" sticky="false" />
-            <p:layout fullPage="false">
-                <p:layoutUnit position="center" style="border: 0px;width:0px;height:0px;">
-                </p:layoutUnit>
-            </p:layout>
-
-            <h1>Test</h1>
 
             <ui:insert name="text">
 

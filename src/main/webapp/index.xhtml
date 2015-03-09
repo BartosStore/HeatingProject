@@ -10,24 +10,7 @@
     <ui:composition template="/WEB-INF/template.xhtml">
         <p:messages autoUpdate="true" showSummary="true" />
         <ui:define name="text">
-            <h:form>
-                <p:panelGrid columns="2">
-                    <f:facet name="header">Layout</f:facet>
 
-                    <h:outputText value="Jméno" />
-                    <p:inputText value="#{userBean.name}">
-                        <p:ajax event="keyup" delay="200" update="@form, :growl" />
-                    </p:inputText>
-
-                    <p:spinner value="#{userBean.boiler.heatTemp}" />
-
-                    <p:commandButton action="#{userBean.setText()}" value="Odeslat" update=":growl" />
-                    <h:link value="Přejdi" outcome="/second" />
-                </p:panelGrid>
-
-                <p>test test test test test test </p>
-
-            </h:form>
         </ui:define>
     </ui:composition>
 
