@@ -5,20 +5,23 @@
  */
 package cz.bartos.heating.DAO;
 
-import cz.bartos.heating.domain.Boiler;
+import cz.bartos.heating.domain.Room;
+import java.util.Collection;
 
 /**
  *
  * @author Míra
  */
-public interface BoilerDao {
+public interface RoomDao {
 
-    Boiler findBoilerById(long id);
+    Room findRoomById(long id);
 
-    void addBoiler(Boiler b);
+    void addRoom(Room r);
 
-    Boiler updateBoiler(Boiler b);
+    Room updateRoom(Room r);
 
-    void deleteBoiler(Boiler b);
+    void deleteRoom(Room r);
+
+    Collection<Room> findAll();
 
 }

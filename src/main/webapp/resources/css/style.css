@@ -9,10 +9,18 @@ and open the template in the editor.
 */
 
 body {
-    max-width: 775px;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: #999999;
+    background-color: #ccffcc;
+    font-family: Verdana;
+    color: #ffffff;
+}
+
+#container {
+    position: relative;
+    /*min-width: 981px;*/
+    max-width: 981px;
+    min-height: 800px;
+    margin: auto auto auto auto;
+    background-color: white;
 }
 
 .message{

@@ -23,7 +23,7 @@ public class GermanLeute implements Service {
 
     @Override
     public String sayHello() {
-        return boilerDao.findById(1L).getBrand();
+        return boilerDao.findBoilerById(1L).getBrand();
     }
 
 }
