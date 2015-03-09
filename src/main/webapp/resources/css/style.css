@@ -11,5 +11,39 @@ and open the template in the editor.
 body {
     margin: 0px;
     font-family: Verdana;
-    color: #ffffff;
+    color: black;
+}
+
+#header {
+    width: 100%;
+    height: 80px;
+    background: url('#{resource['img/header_bottom_line.png']}') repeat-x;
+    background-position: bottom;
+    
+}
+
+#logo {
+    float: left;
+    width: 250px;
+    height: 60px;
+    line-height: 60px;
+    vertical-align: middle;
+}
+
+#menu {
+    float: right;
+    width: 250px;
+    height: 60px;
+    line-height: 60px;
+    vertical-align: middle;
+}
+
+#content {
+    width: 100%;
+    min-height: 300px;
+}
+
+#footer {
+    width: 100%;
+    height: 60px;
 }

@@ -10,12 +10,22 @@
     </h:head>
     <h:body>
         <p:growl id="growl" showSummary="true" showDetail="true" sticky="false" />
-        <div id="container">
-
-
-            <ui:insert name="text">
-
-            </ui:insert>
+        <div id="header">
+            <div id="logo">
+                
+            </div>
+            <div id="menu">
+                
+            </div>
+        </div>
+        
+        <div id="content">
+            <h1><ui:insert name="header"></ui:insert></h1>
+            <ui:insert name="content"></ui:insert>
+        </div>
+        
+        <div id="footer">
+            
         </div>
     </h:body>
 </html>
