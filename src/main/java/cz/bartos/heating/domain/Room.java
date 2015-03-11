@@ -28,7 +28,7 @@ public class Room implements Serializable {
     @Size(min = 1, max = 100)
     private String roomName;
     @ManyToOne
-    private Boiler boiler;
+    private Building building;
     @OneToMany
     private List<Sensor> sensors;
 
@@ -48,12 +48,12 @@ public class Room implements Serializable {
         this.roomName = roomName;
     }
 
-    public Boiler getBoiler() {
-        return boiler;
+    public Building getBuilding() {
+        return building;
     }
 
-    public void setBoiler(Boiler boiler) {
-        this.boiler = boiler;
+    public void setBuilding(Building building) {
+        this.building = building;
     }
 
     public List<Sensor> getSensors() {

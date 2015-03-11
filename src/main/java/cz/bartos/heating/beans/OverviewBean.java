@@ -2,6 +2,8 @@ package cz.bartos.heating.beans;
 
 import cz.bartos.heating.dao.BuildingDao;
 import cz.bartos.heating.domain.Building;
+import cz.bartos.heating.domain.Room;
+import cz.bartos.heating.domain.Sensor;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -17,12 +19,12 @@ import javax.inject.Named;
 @ViewScoped
 public class OverviewBean implements Serializable {
 
-    @Inject private BuildingDao buildingsDao;
+    @Inject
+    private BuildingDao buildingsDao;
     private List<Building> buildings;
     private Building selectedBuilding;
 
     public Building getSelectedBuilding() {
-        System.out.println(selectedBuilding);
         return selectedBuilding;
     }
 
@@ -44,4 +46,12 @@ public class OverviewBean implements Serializable {
         this.buildings = buildings;
     }
 
+    public double calcAverageTemp(List<Sensor> sensors) {
+        double identity = 0;
+        for (Sensor s : sensors) {
+            identity += s.getCurrentTemperature();
+        }
+
+        return identity / sensors.size();
+    }
 }

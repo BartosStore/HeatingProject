@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -28,6 +29,8 @@ public class Boiler implements Serializable {
     private String brand;
     @NotNull
     private int heatTemp;
+    @ManyToOne
+    private Building building;
 
     public String getBrand() {
         return brand;
@@ -51,6 +54,14 @@ public class Boiler implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Building getBuilding() {
+        return building;
+    }
+
+    public void setBuilding(Building building) {
+        this.building = building;
     }
 
 }

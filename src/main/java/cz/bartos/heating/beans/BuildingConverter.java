@@ -12,7 +12,8 @@ import javax.inject.Named;
 @Named
 public class BuildingConverter implements Converter, Serializable {
 
-    @Inject BuildingDao buildingDao;
+    @Inject
+    BuildingDao buildingDao;
 
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {

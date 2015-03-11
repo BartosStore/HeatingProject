@@ -1,6 +1,7 @@
 package cz.bartos.heating.domain;
 
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -27,17 +28,23 @@ public class Building {
     private long id;
     @Size(min = 1, max = 100)
     private String name;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.MERGE)
     private List<Room> rooms;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.MERGE)
     private List<Boiler> boilers;
 
     @Override
     public boolean equals(Object obj) {
-        if (obj == null) return false;
-        if (getClass() != obj.getClass()) return false;
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
         final Building other = (Building) obj;
-        if (this.id != other.id) return false;
+        if (this.id != other.id) {
+            return false;
+        }
         return true;
     }
 

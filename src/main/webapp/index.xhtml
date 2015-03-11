@@ -9,18 +9,31 @@
 
     <ui:composition template="/WEB-INF/template.xhtml">
         <p:messages autoUpdate="true" showSummary="true" />
-        
+
         <ui:define name="header">Inteligentní vytápění budov</ui:define>
-        
+
         <ui:define name="description">Výběr budov. Výběr místností. Předhled v jednotlivých budovách.</ui:define>
-        
+
         <ui:define name="content">
             <h:form>
                 <p:selectOneMenu id="menu" value="#{overviewBean.selectedBuilding}" converter="#{buildingConverter}">
                     <f:selectItems value="#{overviewBean.buildings}" var="building" itemLabel="#{building.name}" itemValue="#{building}"/>
-                    <!--<p:ajax event="change" update="menu, :test"/>-->
-                    <p:ajax event="change" update="menu"/>
+                    <p:ajax event="change" update="menu, roomOverview"/>
                 </p:selectOneMenu>
+
+                <p:carousel id="roomOverview" value="#{overviewBean.selectedBuilding.rooms}" var="room" >
+                    <h:panelGrid columns="2" style="width: 100%" cellpadding="5" columnClasses="label,value">
+                        <f:facet name="header">
+                            Přehled místností
+                        </f:facet>
+
+                        <h:outputText value="Místnost:" />
+                        <h:outputText value="#{room.roomName}" />
+
+                        <h:outputText value="Teplota:" />
+                        <h:outputText value="#{overviewBean.calcAverageTemp(room.sensors)}" />
+                    </h:panelGrid>
+                </p:carousel>
             </h:form>
 
         </ui:define>
