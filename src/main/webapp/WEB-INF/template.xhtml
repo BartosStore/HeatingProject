@@ -11,16 +11,25 @@
     <h:body>
         <p:growl id="growl" showSummary="true" showDetail="true" sticky="false" />
         <div id="header">
-            <div id="logo">
-                
-            </div>
-            <div id="menu">
-                
+            <div id="header_container">
+                <div id="logo">
+                    <img src="resources/img/logo.png" alt="Bartoš and Němečková hardcore developers"></img>
+                </div>
+                <div id="menu">
+                    <ul>
+                        <li><a href="index.xhtml">DOMŮ</a></li>
+                        <li><a href="administration.xhtml">SPRÁVA</a></li>
+                        <li><a href="">OHŘEV</a></li>
+                        <li><a href="">PŘEDPOVĚD POČASÍ</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
         
         <div id="content">
             <h1><ui:insert name="header"></ui:insert></h1>
+            <div id="h1_underline"></div>
+            <div id="content_description"><ui:insert name="description"></ui:insert></div>
             <ui:insert name="content"></ui:insert>
         </div>
         

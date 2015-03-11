@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/WEB-INF/template.xhtml">
+        <p:messages autoUpdate="true" showSummary="true" />
+        
+        <ui:define name="header">Správa zařízení</ui:define>
+        
+        <ui:define name="description">Přidání, editace a smazání budov a místností.</ui:define>
+        
+        <ui:define name="content">
+            <h:form>
+                <p:selectOneMenu id="menu" value="#{administrationBean.selectedBuilding}" converter="#{buildingConverter}">
+                    <f:selectItems value="#{administrationBean.buildings}" var="building" itemLabel="#{building.name}" itemValue="#{building}"/>
+                    <!--<p:ajax event="change" update="menu, :test"/>-->
+                    <p:ajax event="change" update="menu"/>
+                </p:selectOneMenu>
+                
+                <p:selectOneMenu id="menu_rooms" value="#{administrationBean.selectedRoom}" converter="#{buildingConverter}">
+                    <f:selectItems value="#{administrationBean.rooms}" var="building" itemLabel="#{room.name}" itemValue="#{room}"/>
+                    <!--<p:ajax event="change" update="menu, :test"/>-->
+                    <p:ajax event="change" update="menu"/>
+                </p:selectOneMenu>
+                
+                <p>?zde bude vybrána budova a k ní se dotáhne seznam jejích místností</p>
+                
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+
+
+
+</html>
+
