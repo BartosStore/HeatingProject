@@ -2,7 +2,6 @@ package cz.bartos.heating.beans;
 
 import cz.bartos.heating.dao.BuildingDao;
 import cz.bartos.heating.domain.Building;
-import cz.bartos.heating.domain.Room;
 import cz.bartos.heating.domain.Sensor;
 import java.io.Serializable;
 import java.util.List;
@@ -21,14 +20,25 @@ public class OverviewBean implements Serializable {
 
     @Inject
     private BuildingDao buildingsDao;
-    private List<Building> buildings;
+    @Inject
+    private BuildingConverter converter;
     private Building selectedBuilding;
+    private List<Building> buildings;
+
+    public BuildingConverter getConverter() {
+        return converter;
+    }
+
+    public void setConverter(BuildingConverter converter) {
+        this.converter = converter;
+    }
 
     public Building getSelectedBuilding() {
         return selectedBuilding;
     }
 
     public void setSelectedBuilding(Building selectedBuilding) {
+        System.out.println(selectedBuilding.getName());
         this.selectedBuilding = selectedBuilding;
     }
 

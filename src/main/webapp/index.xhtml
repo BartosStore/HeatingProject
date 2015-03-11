@@ -16,16 +16,17 @@
 
         <ui:define name="content">
             <h:form>
-                <p:selectOneMenu id="menu" value="#{overviewBean.selectedBuilding}" converter="#{buildingConverter}">
+                <p:selectOneMenu id="menu" value="#{overviewBean.selectedBuilding}" converter="#{overviewBean.converter}">
                     <f:selectItems value="#{overviewBean.buildings}" var="building" itemLabel="#{building.name}" itemValue="#{building}"/>
                     <p:ajax event="change" update="menu, roomOverview"/>
                 </p:selectOneMenu>
+                <br/>
 
                 <p:carousel id="roomOverview" value="#{overviewBean.selectedBuilding.rooms}" var="room" >
+                    <f:facet name="header">
+                        Místnosti
+                    </f:facet>
                     <h:panelGrid columns="2" style="width: 100%" cellpadding="5" columnClasses="label,value">
-                        <f:facet name="header">
-                            Přehled místností
-                        </f:facet>
 
                         <h:outputText value="Místnost:" />
                         <h:outputText value="#{room.roomName}" />
