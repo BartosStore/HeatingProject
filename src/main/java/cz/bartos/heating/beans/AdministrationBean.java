@@ -1,6 +1,7 @@
 package cz.bartos.heating.beans;
 
 import cz.bartos.heating.dao.BuildingDao;
+import cz.bartos.heating.dao.RoomDao;
 import cz.bartos.heating.domain.Building;
 import cz.bartos.heating.domain.Room;
 import java.io.Serializable;
@@ -20,6 +21,7 @@ import javax.inject.Named;
 public class AdministrationBean implements Serializable {
     
     @Inject private BuildingDao buildingDao;
+    @Inject private RoomDao roomDao;
     private List<Building> buildings;
     private Building selectedBuilding;
     //mistnosti pro vybranou budovu
@@ -58,7 +60,11 @@ public class AdministrationBean implements Serializable {
     public void setRooms(List<Room> rooms) {
         this.rooms = rooms;
     }
-
+    
+    public void updateRoom(Room room){
+        roomDao.merge(room);
+    }
+    
     public Room getSelectedRoom() {
         return selectedRoom;
     }

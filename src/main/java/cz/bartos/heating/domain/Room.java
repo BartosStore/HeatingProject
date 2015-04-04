@@ -64,4 +64,14 @@ public class Room implements Serializable {
         this.sensors = sensors;
     }
 
+    public double getAverageTempFromSensors() {
+        double sum = 0;
+
+        for (Sensor s : sensors) {
+            sum += s.getCurrentTemperature();
+        }
+
+        return sum / sensors.size();
+    }
+
 }

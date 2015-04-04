@@ -19,12 +19,37 @@
                 <p:selectOneMenu id="menu" value="#{administrationBean.selectedBuilding}" converter="#{buildingConverter}">
                     <f:selectItems value="#{administrationBean.buildings}" var="building" itemLabel="#{building.name}" itemValue="#{building}"/>
                     <!--<p:ajax event="change" update="menu, :test"/>-->
-                    <p:ajax event="change" update="menu"/>
+                    <p:ajax event="change" update="menu, roomTable"/>
                 </p:selectOneMenu>
 
 
 
-                <p>?zde bude vybrána budova a k ní se dotáhne seznam jejích místností</p>
+                <p:dataTable id="roomTable" editable="true" editMode="cell" var="room" value="#{administrationBean.selectedBuilding.rooms}">
+
+                    <p:column id="roomNameColumn" headerText="Místnost">
+                        <p:cellEditor>
+                            <f:facet name="output"> <h:outputText id="roomNameOutput" value="#{room.roomName}"/> </f:facet>
+                            <f:facet name="input">
+                                <p:inputText id="roomNameInput" value="#{room.roomName}">
+                                    <p:ajax event="blur" listener="#{administrationBean.updateRoom(room)}"/>
+                                </p:inputText>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column id="roomNameColumn" headerText="Místnost">
+                        <p:cellEditor>
+                            <f:facet name="output"> <h:outputText id="roomNameOutput" value="#{room.sensors.size}"/> </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column id="roomNameColumn" headerText="Místnost">
+                        <p:cellEditor>
+                            <f:facet name="output"> <h:outputText id="roomNameOutput" value="#{room.averageTempFromSensors}"/> </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                </p:dataTable>
 
             </h:form>
 
