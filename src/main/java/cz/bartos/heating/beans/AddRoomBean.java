@@ -3,18 +3,21 @@ package cz.bartos.heating.beans;
 import cz.bartos.heating.dao.RoomDao;
 import cz.bartos.heating.domain.Room;
 import cz.bartos.heating.producer.RoomProducer;
+import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 /**
  *
  * @author Pavel Pscheidl
  */
+@Named
 @ViewScoped
-public class AddRoomBean {
+public class AddRoomBean implements Serializable {
 
     @Inject private RoomProducer roomProducer;
     @Inject private RoomDao roomDao;

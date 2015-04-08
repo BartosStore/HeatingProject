@@ -1,18 +1,19 @@
 package cz.bartos.heating.producer;
 
 import cz.bartos.heating.domain.Room;
+import java.io.Serializable;
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.inject.Singleton;
 
 /**
  *
  * @author Verunka
  */
 @Named
-@Singleton
-public class RoomProducer {
+@RequestScoped
+public class RoomProducer implements Serializable {
 
     @Inject SensorProducer sensorProducer;
 
