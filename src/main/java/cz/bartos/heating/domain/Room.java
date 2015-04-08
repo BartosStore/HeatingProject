@@ -8,6 +8,7 @@ package cz.bartos.heating.domain;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,7 +30,7 @@ public class Room implements Serializable {
     private String roomName;
     @ManyToOne
     private Building building;
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Sensor> sensors;
 
     public Long getId() {
@@ -66,12 +67,17 @@ public class Room implements Serializable {
 
     public double getAverageTempFromSensors() {
         double sum = 0;
+        if (sensors.size() == 0) {
+            return sum;
+        }
 
         for (Sensor s : sensors) {
             sum += s.getCurrentTemperature();
         }
-
         return sum / sensors.size();
     }
 
+    public void addSensor(Sensor sensor) {
+        sensors.add(sensor);
+    }
 }

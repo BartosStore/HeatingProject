@@ -37,16 +37,13 @@
                         </p:cellEditor>
                     </p:column>
 
-                    <p:column id="roomNameColumn" headerText="Místnost">
-                        <p:cellEditor>
-                            <f:facet name="output"> <h:outputText id="roomNameOutput" value="#{room.sensors.size}"/> </f:facet>
-                        </p:cellEditor>
+                    <p:column id="roomNameColumn1" headerText="Místnost">
+                        <h:outputText id="roomNameOutput1" value=" #{room.sensors.size()}"/>
                     </p:column>
 
-                    <p:column id="roomNameColumn" headerText="Místnost">
-                        <p:cellEditor>
-                            <f:facet name="output"> <h:outputText id="roomNameOutput" value="#{room.averageTempFromSensors}"/> </f:facet>
-                        </p:cellEditor>
+
+                    <p:column id="roomNameColumn2" headerText="Místnost">
+                        <h:outputText id="roomNameOutput2" value=" #{room.averageTempFromSensors}"/>
                     </p:column>
 
                 </p:dataTable>
