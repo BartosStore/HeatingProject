@@ -22,8 +22,8 @@
                     <p:ajax event="change" update="menu, roomTable"/>
                 </p:selectOneMenu>
 
-
-
+                <hr />
+                <a href="addRoom.xhtml">Nová místnost</a>
                 <p:dataTable id="roomTable" editable="true" editMode="cell" var="room" value="#{administrationBean.selectedBuilding.rooms}">
 
                     <p:column id="roomNameColumn" headerText="Místnost">

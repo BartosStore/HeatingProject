@@ -15,26 +15,24 @@ import javax.inject.Named;
  *
  * @author Verunka
  */
-
 @Named
 @ViewScoped
 public class AdministrationBean implements Serializable {
-    
-    @Inject private BuildingDao buildingDao;
-    @Inject private RoomDao roomDao;
+
+    @Inject
+    private BuildingDao buildingDao;
+    @Inject
+    private RoomDao roomDao;
     private List<Building> buildings;
     private Building selectedBuilding;
     //mistnosti pro vybranou budovu
     private List<Room> rooms;
     private Room selectedRoom;
-    
+
     @PostConstruct
     private void init() {
         buildings = buildingDao.findAll();
         selectedBuilding = buildings.get(0);
-        
-        //rooms = selectedBuilding.getRooms();
-        //selectedRoom = rooms.get(0);
     }
 
     public List<Building> getBuildings() {
@@ -60,11 +58,11 @@ public class AdministrationBean implements Serializable {
     public void setRooms(List<Room> rooms) {
         this.rooms = rooms;
     }
-    
-    public void updateRoom(Room room){
+
+    public void updateRoom(Room room) {
         roomDao.merge(room);
     }
-    
+
     public Room getSelectedRoom() {
         return selectedRoom;
     }
@@ -72,7 +70,5 @@ public class AdministrationBean implements Serializable {
     public void setSelectedRoom(Room selectedRoom) {
         this.selectedRoom = selectedRoom;
     }
-    
-    
-    
+
 }

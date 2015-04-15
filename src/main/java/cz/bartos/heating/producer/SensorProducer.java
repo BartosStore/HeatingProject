@@ -2,8 +2,9 @@ package cz.bartos.heating.producer;
 
 import cz.bartos.heating.domain.Sensor;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.inject.Produces;
 import javax.inject.Named;
 
 /**
@@ -14,10 +15,17 @@ import javax.inject.Named;
 @RequestScoped
 public class SensorProducer implements Serializable {
 
-    @Produces
     public Sensor produce() {
         Sensor sensor = new Sensor();
         return sensor;
+    }
+
+    public List<Sensor> produceSensors(int numOfSensors) {
+        List<Sensor> sensors = new ArrayList<>();
+        for (int i = 0; i < numOfSensors; i++) {
+            sensors.add(produce());
+        }
+        return sensors;
     }
 
 }

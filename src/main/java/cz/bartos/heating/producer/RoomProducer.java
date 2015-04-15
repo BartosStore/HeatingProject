@@ -1,10 +1,10 @@
 package cz.bartos.heating.producer;
 
 import cz.bartos.heating.domain.Room;
+import cz.bartos.heating.domain.Sensor;
 import java.io.Serializable;
+import java.util.ArrayList;
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.inject.Produces;
-import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
@@ -15,14 +15,9 @@ import javax.inject.Named;
 @RequestScoped
 public class RoomProducer implements Serializable {
 
-    @Inject SensorProducer sensorProducer;
-
-    @Produces
     public Room produceSpecimenRoom() {
         Room room = new Room();
-        for (int i = 0; i < 2; i++) {
-            room.addSensor(sensorProducer.produce());
-        }
+        room.setSensors(new ArrayList<Sensor>());
         return room;
     }
 
