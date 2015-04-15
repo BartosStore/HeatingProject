@@ -7,6 +7,7 @@ package cz.bartos.heating.domain;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -30,7 +31,7 @@ public class Room implements Serializable {
     private String roomName;
     @ManyToOne
     private Building building;
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Sensor> sensors;
 
     public Long getId() {

@@ -12,11 +12,11 @@ public class BuildingDaoImpl implements BuildingDao {
 
     @PersistenceContext
     private EntityManager eManager;
-    
+
     @Override
     public List<Building> findAll() {
         Query query = eManager.createNamedQuery("findAllBuildings");
-        
+
         return query.getResultList();
     }
 
@@ -24,8 +24,13 @@ public class BuildingDaoImpl implements BuildingDao {
     public Building findByName(String name) {
         Query query = eManager.createNamedQuery("findBuildingByName");
         query.setParameter("name", name);
-        
+
         return (Building) query.getSingleResult();
     }
-    
+
+    @Override
+    public Building merge(Building building) {
+        return eManager.merge(building);
+    }
+
 }

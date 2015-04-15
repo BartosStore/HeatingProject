@@ -27,7 +27,7 @@
 
                     <p:outputLabel for="roomName" value="Název místnosti: " />
                     <p:inputText id="roomName" style="width:194px" value="#{addRoomBean.newRoom.roomName}">
-                        <p:ajax event="keyup" delay="3000" update="@this, :growl"/>
+                        <p:ajax event="blur" delay="1000" update="@this, :growl"/>
                     </p:inputText>
 
                     <p:outputLabel for="menuSensors" value="Počet senzorů:" />
@@ -39,7 +39,7 @@
 
                 </h:panelGrid>
 
-                <p:commandButton value="Save" id="submitButton" actionListener="addRoomBean.submitRoom"  ajax="false" />
+                <p:commandButton value="Save" id="submitButton" actionListener="#{addRoomBean.submitRoom()}"  ajax="false" />
 
             </h:form>
 

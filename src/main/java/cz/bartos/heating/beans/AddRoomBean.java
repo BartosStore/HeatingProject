@@ -51,12 +51,14 @@ public class AddRoomBean implements Serializable {
     public String submitRoom() {
         newRoom.setSensors(sensorProducer.produceSensors(numOfSensors));
 
-        roomDao.save(newRoom);
+        Building building = newRoom.getBuilding();
+        building.getRooms().add(newRoom);
+        buildingDao.merge(building);
 
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Místnost přidána", "Vaše místnost byla uložena");
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Místnost přidána", "Vaše místnost " + newRoom.getRoomName() + " byla uložena do budovy " + building.getName());
         FacesContext.getCurrentInstance().addMessage(null, message);
 
-        return "index";
+        return "/administration.xhtml";
     }
 
     public int getNumOfSensors() {
