@@ -3,8 +3,10 @@ package cz.bartos.heating.beans;
 import cz.bartos.heating.dao.RoomDao;
 import cz.bartos.heating.domain.Room;
 import java.io.Serializable;
+import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -19,7 +21,7 @@ import javax.validation.constraints.Min;
 @ViewScoped
 public class EditRoomBean implements Serializable {
 
-    @ManagedProperty(value = "#{param.id}")
+    @ManagedProperty(value = "#{param.roomId}")
     private Long id;
 
     @Inject
@@ -32,11 +34,15 @@ public class EditRoomBean implements Serializable {
 
     @PostConstruct
     public void init() {
-        //Long pomId = Long.parseLong(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id"));
-        System.out.println("V Y P A R S O V A N É   I D : " + id);
+        FacesContext context = FacesContext.getCurrentInstance();
+        Map<String, String> paramMap = context.getExternalContext().getRequestParameterMap();
+        String roomId = paramMap.get("roomId");
 
-        Long a = Long.valueOf(11);
-        editRoom = roomDao.findRoomById(a);
+        System.out.println("V Y P A R S O V A N É   I D : " + roomId);
+
+        id = Long.parseLong(roomId);
+
+        editRoom = roomDao.findRoomById(id);
         numOfSensors = editRoom.getSensors().size();
 
     }
