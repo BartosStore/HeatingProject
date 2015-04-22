@@ -26,4 +26,9 @@ public class RoomDaoImpl implements RoomDao {
         manager.remove(room);
     }
 
+    @Override
+    public Room findRoomById(Long id) {
+        return manager.find(Room.class, id);
+    }
+
 }

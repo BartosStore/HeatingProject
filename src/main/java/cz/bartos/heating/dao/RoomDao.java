@@ -14,4 +14,6 @@ public interface RoomDao {
 
     public void delete(Room room);
 
+    public Room findRoomById(Long id);
+
 }

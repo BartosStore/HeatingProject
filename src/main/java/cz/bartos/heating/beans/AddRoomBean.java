@@ -19,7 +19,7 @@ import javax.validation.constraints.Min;
 
 /**
  *
- * @author Pavel Pscheidl
+ * @author Míra
  */
 @Named
 @ViewScoped
@@ -58,7 +58,7 @@ public class AddRoomBean implements Serializable {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Místnost přidána", "Vaše místnost " + newRoom.getRoomName() + " byla uložena do budovy " + building.getName());
         FacesContext.getCurrentInstance().addMessage(null, message);
 
-        return "/administration.xhtml";
+        return "administration";
     }
 
     public int getNumOfSensors() {

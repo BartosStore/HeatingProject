@@ -10,36 +10,40 @@
     <ui:composition template="/WEB-INF/template.xhtml">
         <p:messages autoUpdate="true" showSummary="true" />
 
+
+
         <ui:define name="header">Nová místnost</ui:define>
 
         <ui:define name="description">Vytvoření nové místnosti.</ui:define>
 
         <ui:define name="content">
+
+
+
             <h:form>
 
                 <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
 
-                    <p:outputLabel for="menuBuildings" value="Budova:" />
-                    <p:selectOneMenu  id="menuBuildings"  value="#{addRoomBean.newRoom.building}" converter="#{buildingConverter}" style="width:200px">
-                        <f:selectItems value="#{administrationBean.buildings}" var="building" itemLabel="#{building.name}" itemValue="#{building}"/>
-                        <p:ajax event="change" update="menuBuildings"/>
-                    </p:selectOneMenu>
+                    <p:outputLabel for="roomBuilding" value="Budova:" />
+                    <p:inputText id="roomBuilding" style="width:194px" value="#{editRoomBean.editRoom.building}">
+                        <p:ajax event="blur" delay="1000" update="@this, :growl"/>
+                    </p:inputText>
 
                     <p:outputLabel for="roomName" value="Název místnosti: " />
-                    <p:inputText id="roomName" style="width:194px" value="#{addRoomBean.newRoom.roomName}">
+                    <p:inputText id="roomName" style="width:194px" value="#{editRoomBean.editRoom.roomName}">
                         <p:ajax event="blur" delay="1000" update="@this, :growl"/>
                     </p:inputText>
 
                     <p:outputLabel for="menuSensors" value="Počet senzorů:" />
 
-                    <p:spinner id="menuSensors" min="1" max="5" value="#{addRoomBean.numOfSensors}">
+                    <p:spinner id="menuSensors" min="1" max="5" value="#{editRoomBean.numOfSensors}">
                         <p:ajax event="change" update="@this, :growl"/>
                     </p:spinner>
 
 
                 </h:panelGrid>
 
-                <p:commandButton value="Save" id="submitButton" actionListener="#{addRoomBean.submitRoom()}"  ajax="false" />
+                <p:commandButton value="Save" id="submitButton" actionListener="#{editRoomBean.submitRoom()}"  ajax="false" />
 
             </h:form>
 
