@@ -10,9 +10,9 @@
     <ui:composition template="/WEB-INF/template.xhtml">
         <p:messages autoUpdate="true" showSummary="true" />
 
-        <ui:define name="header">Správa zařízení</ui:define>
+        <ui:define name="header">Detail místnosti</ui:define>
 
-        <ui:define name="description">Přidání, editace a smazání budov a místností.</ui:define>
+        <ui:define name="description">Editace informací o místnosti.</ui:define>
 
         <ui:define name="content">
             <h:form>
@@ -24,6 +24,7 @@
 
                 <hr />
                 <a href="addRoom.xhtml">Nová místnost</a>
+                <hr />
                 <p:dataTable id="roomTable" editable="true" editMode="cell" var="room" value="#{administrationBean.selectedBuilding.rooms}">
 
                     <p:column id="roomNameColumn" headerText="Místnost">
@@ -37,13 +38,26 @@
                         </p:cellEditor>
                     </p:column>
 
-                    <p:column id="roomNameColumn1" headerText="Místnost">
+                    <p:column id="roomNameColumn1" headerText="Počet senzorů">
                         <h:outputText id="roomNameOutput1" value=" #{room.sensors.size()}"/>
                     </p:column>
 
 
-                    <p:column id="roomNameColumn2" headerText="Místnost">
+                    <p:column id="roomNameColumn2" headerText="Průměrná teplota">
                         <h:outputText id="roomNameOutput2" value=" #{room.averageTempFromSensors}"/>
+                    </p:column>
+
+                    <p:column id="edit" headerText="Upravit">
+                        <p:link outcome="administration" value="Upravit">
+                            <f:param name="roomId" value="#{room.id}" />
+                        </p:link>
+
+                    </p:column>
+
+                    <p:column id="delete" headerText="Odstranit">
+                        <p:commandLink id="deleteLink">
+                            <h:outputText value="Odstranit" />
+                        </p:commandLink>
                     </p:column>
 
                 </p:dataTable>

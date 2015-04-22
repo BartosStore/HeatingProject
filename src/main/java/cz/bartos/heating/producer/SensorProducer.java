@@ -17,6 +17,7 @@ public class SensorProducer implements Serializable {
 
     public Sensor produce() {
         Sensor sensor = new Sensor();
+        sensor.setCurrentTemperature(20.5);
         return sensor;
     }
 

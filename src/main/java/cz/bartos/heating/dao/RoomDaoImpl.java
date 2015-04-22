@@ -8,7 +8,8 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class RoomDaoImpl implements RoomDao {
 
-    @PersistenceContext EntityManager manager;
+    @PersistenceContext
+    EntityManager manager;
 
     @Override
     public Room merge(Room room) {
@@ -18,6 +19,11 @@ public class RoomDaoImpl implements RoomDao {
     @Override
     public void save(Room room) {
         manager.persist(room);
+    }
+
+    @Override
+    public void delete(Room room) {
+        manager.remove(room);
     }
 
 }

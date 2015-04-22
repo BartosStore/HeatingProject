@@ -12,4 +12,6 @@ public interface RoomDao {
 
     public void save(Room room);
 
+    public void delete(Room room);
+
 }

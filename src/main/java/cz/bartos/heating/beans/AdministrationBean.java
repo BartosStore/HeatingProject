@@ -7,6 +7,9 @@ import cz.bartos.heating.domain.Room;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -33,6 +36,17 @@ public class AdministrationBean implements Serializable {
     private void init() {
         buildings = buildingDao.findAll();
         selectedBuilding = buildings.get(0);
+    }
+
+    public void editAction(ActionEvent actionEvent) {
+
+    }
+
+    public void deleteAction(ActionEvent actionEvent) {
+        //FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Místnost odstraněna", "Vaše místnost " + selectedRoom.getRoomName() + " byla odstraněna.");
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Místnost odstraněna", "Vaše místnost byla odstraněna.");
+        FacesContext.getCurrentInstance().addMessage(null, message);
+        System.out.println("Odstraněno");
     }
 
     public List<Building> getBuildings() {
