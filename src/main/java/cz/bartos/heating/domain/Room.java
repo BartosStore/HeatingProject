@@ -31,7 +31,7 @@ public class Room implements Serializable {
     private String roomName;
     @ManyToOne
     private Building building;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Sensor> sensors;
 
     public Long getId() {

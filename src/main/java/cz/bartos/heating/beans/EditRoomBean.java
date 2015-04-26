@@ -2,9 +2,11 @@ package cz.bartos.heating.beans;
 
 import cz.bartos.heating.dao.RoomDao;
 import cz.bartos.heating.domain.Room;
+import cz.bartos.heating.domain.Sensor;
 import java.io.Serializable;
 import java.util.Map;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -48,16 +50,17 @@ public class EditRoomBean implements Serializable {
     }
 
     public String submitRoom() {
-        /*editRoom.setSensors(sensorProducer.produceSensors(numOfSensors));
-
-         Building building = editRoom.getBuilding();
-         building.getRooms().add(editRoom);
-         buildingDao.merge(building);
-
-         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Místnost přidána", "Vaše místnost " + editRoom.getRoomName() + " byla uložena do budovy " + building.getName());
-         FacesContext.getCurrentInstance().addMessage(null, message);*/
-
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Úpravy změněny", "Nové nastavení je platné.");
+        FacesContext.getCurrentInstance().addMessage(null, message);
+        roomDao.merge(editRoom);
         return "/administration.xhtml";
+    }
+
+    public void changeSensorCount() {
+        editRoom.getSensors().clear();
+        for (int i = 0; i < numOfSensors; i++) {
+            editRoom.getSensors().add(new Sensor());
+        }
     }
 
     public int getNumOfSensors() {

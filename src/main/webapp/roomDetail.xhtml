@@ -27,9 +27,10 @@
                 <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
 
                     <p:outputLabel for="roomBuilding" value="Budova:" />
-                    <p:inputText id="roomBuilding" style="width:194px" value="#{editRoomBean.editRoom.building}">
+                    <p:inputText id="roomBuilding" style="width:194px" value="#{editRoomBean.editRoom.building.name}" disabled="true">
                         <p:ajax event="blur" delay="1000" update="@this, :growl"/>
                     </p:inputText>
+
 
                     <p:outputLabel for="roomName" value="Název místnosti: " />
                     <p:inputText id="roomName" style="width:194px" value="#{editRoomBean.editRoom.roomName}">
@@ -39,13 +40,11 @@
                     <p:outputLabel for="menuSensors" value="Počet senzorů:" />
 
                     <p:spinner id="menuSensors" min="1" max="5" value="#{editRoomBean.numOfSensors}">
-                        <p:ajax event="change" update="@this, :growl"/>
+                        <p:ajax event="change" update="@this, :growl" listener="#{editRoomBean.changeSensorCount()}"/>
                     </p:spinner>
-
-
                 </h:panelGrid>
 
-                <p:commandButton value="Save" id="submitButton" actionListener="#{editRoomBean.submitRoom()}"  ajax="false" />
+                <p:commandButton value="Save" id="submitButton" action="#{editRoomBean.submitRoom()}"  ajax="false" />
 
             </h:form>
 
