@@ -9,7 +9,7 @@ import javax.inject.Named;
 
 /**
  *
- * @author Pavel Pscheidl
+ * @author Miroslav Bartoš
  */
 @Named
 @RequestScoped

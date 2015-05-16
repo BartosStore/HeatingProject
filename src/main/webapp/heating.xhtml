@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/WEB-INF/template.xhtml">
+        <p:messages autoUpdate="true" showSummary="true" />
+
+        <ui:define name="header">Sledování ohřevu</ui:define>
+
+        <ui:define name="description">Přehled topných těles v jednotlivých budovách.</ui:define>
+
+        <ui:define name="content">
+            <h:form>
+                <p:selectOneButton value="#{heatingBean.selectedBuilding}" converter="#{buildingConverter}">
+                    <f:selectItems value="#{heatingBean.buildings}" var="building" itemValue="#{building}" itemLabel="#{building.name}"/>
+                    <p:ajax event="change" update="@form" listener="#{heatingBean.updateSelectedBuildingStatistics()}"/>
+                </p:selectOneButton>
+                <br/><br/>
+                <p:panelGrid columns="2" layout="grid" rendered="#{heatingBean.selectedBuilding != null}">
+                    <f:facet name="header">Parametry budovy</f:facet>
+                    <p:outputLabel value="Průměrná teplota budovy"/> <h:outputText value="#{heatingBean.buildingAverageTemperature} °C"/>
+                    <p:outputLabel value="Místnost s nejnižší teplotou"/> <h:outputText value="#{heatingBean.lowestTempRoom.roomName} / #{heatingBean.lowestTempRoom.averageTempFromSensors} °C"/>
+                    <p:outputLabel value="Místnost s nejvyšší teplotou"/><h:outputText value="#{heatingBean.highestTempRoom.roomName} / #{heatingBean.highestTempRoom.averageTempFromSensors} °C"/>
+                    <p:outputLabel value="Diference teplot"/><h:outputText value="#{heatingBean.highestTempRoom.averageTempFromSensors - heatingBean.lowestTempRoom.averageTempFromSensors} °C"/>
+                </p:panelGrid>
+                <br/>
+                <p:outputLabel value="Kotel ohřívá dle následujícího nastavení" rendered="#{heatingBean.selectedBuilding != null}"/>
+                <br/>
+                <br/>
+                <center>
+                    <p:panelGrid rendered="#{heatingBean.selectedBuilding != null}">
+                        <f:facet name="header">
+                            <p:row>
+                                <p:column colspan="2">Nastavení kotle</p:column>
+                            </p:row>
+                        </f:facet>
+                        <p:row>
+                            <p:column><h:outputLabel value="Cílová teplota" style="color: #cc0000"/></p:column>
+                            <p:column><h:outputText value="#{heatingBean.targetTemperature}"/></p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column><h:outputLabel value="Vstupní teplota"/></p:column>
+                            <p:column><h:outputText value="#{heatingBean.lowestTempRoom.averageTempFromSensors}"/></p:column>
+                        </p:row>
+                    </p:panelGrid>
+                </center>
+                <br/>
+
+            </h:form>
+
+
+
+        </ui:define>
+    </ui:composition>
+
+
+
+</html>
+
