@@ -53,6 +53,7 @@ public class EditRoomBean implements Serializable {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Úpravy změněny", "Nové nastavení je platné.");
         FacesContext.getCurrentInstance().addMessage(null, message);
         roomDao.merge(editRoom);
+        editRoom.getAverageTempFromSensors();
         return "/administration.xhtml";
     }
 

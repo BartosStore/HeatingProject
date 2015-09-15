@@ -5,6 +5,8 @@ import cz.bartos.heating.domain.Building;
 import cz.bartos.heating.domain.Room;
 import cz.bartos.heating.service.HeatingService;
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import java.util.OptionalDouble;
 import javax.annotation.PostConstruct;
@@ -20,8 +22,10 @@ import javax.inject.Named;
 @ViewScoped
 public class HeatingBean implements Serializable {
 
-    @Inject private BuildingDao buildingDao;
-    @Inject private HeatingService heatingService;
+    @Inject
+    private BuildingDao buildingDao;
+    @Inject
+    private HeatingService heatingService;
     private List<Building> buildings;
     private Building selectedBuilding;
     private double buildingAverageTemperature;
@@ -30,6 +34,8 @@ public class HeatingBean implements Serializable {
 
     private void calcTargetTemperature() {
         targetTemperature = heatingService.process(lowestTempRoom.getAverageTempFromSensors());
+
+        targetTemperature = BigDecimal.valueOf(targetTemperature).setScale(2, RoundingMode.HALF_UP).doubleValue();
     }
 
     @PostConstruct
